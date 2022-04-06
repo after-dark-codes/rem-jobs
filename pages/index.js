@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Header from "./header";
+import Search from "./search";
 
 export default function Home() {
   return (
@@ -8,6 +9,8 @@ export default function Home() {
         <title>Rem Jobs</title>
       </Head>
       <Header />
+
+      <Search />
     </>
   );
 }
