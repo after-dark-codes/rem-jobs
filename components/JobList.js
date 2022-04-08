@@ -2,7 +2,7 @@ import JobItem from "./JobItem";
 
 function JobList() {
   return (
-    <>
+    <div className="">
       <JobItem />
       <JobItem />
       <JobItem />
@@ -11,7 +11,7 @@ function JobList() {
       <JobItem />
       <JobItem />
       <JobItem />
-    </>
+    </div>
   );
 }
 
