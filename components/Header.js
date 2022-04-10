@@ -1,6 +1,9 @@
+import { signOut, signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 
 function Header() {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <header className="shadow-sm sticky">
       <div className="max-w-screen-xl p-4 mx-auto">
@@ -25,19 +28,30 @@ function Header() {
           </nav>
 
           <div className="items-center justify-end flex-1 hidden space-x-4 sm:flex">
-            <a
-              className="px-5 py-2 text-sm font-medium text-white bg-[#77BB3F] rounded-lg"
-              href=""
-            >
-              Post Job
-            </a>
-
-            <a
-              className="px-5 py-2 text-sm font-medium text-gray-500 rounded-lg"
-              href=""
-            >
-              Sign up
-            </a>
+            {session ? (
+              <>
+                <a
+                  className="px-5 py-2 text-sm font-medium text-white bg-[#77BB3F] rounded-lg"
+                  href=""
+                >
+                  Post Job
+                </a>
+                <img
+                  onClick={signOut}
+                  src={session?.user?.image}
+                  alt="image"
+                  className="cursor-pointer"
+                />
+              </>
+            ) : (
+              <a
+                className="px-5 py-2 text-sm font-medium text-gray-500 rounded-lg"
+                href=""
+                onClick={signIn}
+              >
+                Sign in
+              </a>
+            )}
           </div>
         </div>
       </div>
