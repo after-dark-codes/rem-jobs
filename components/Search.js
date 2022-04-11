@@ -1,5 +1,10 @@
 import { SearchIcon } from "@heroicons/react/outline";
+import { useRecoilState } from "recoil";
+import { jobsState } from "../atoms/jobsAtom";
+
 function Search() {
+  const [filter, setFilter] = useRecoilState(jobsState);
+
   return (
     <div className="p-10">
       <h1 className="flex justify-center items-center text-3xl p-5">
@@ -17,10 +22,13 @@ function Search() {
           type="text"
           placeholder="Search Remote Jobs..."
         />
-        <select className="h-20 absolute right-0 bg-gray-50 block w-1/2 pl-10 border-gray-300 focus:ring-black focus:border-black rounded-tr-md rounded-br-md object-fill border-l-black">
+        <select
+          onChange={(e) => setFilter(e.target.value)}
+          className="h-20 absolute right-0 bg-gray-50 block w-1/2 pl-10 border-gray-300 focus:ring-black focus:border-black rounded-tr-md rounded-br-md object-fill border-l-black"
+        >
           <option value="1">1</option>
-          <option value="1">1</option>
-          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
         </select>
       </div>
     </div>
