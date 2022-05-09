@@ -16,6 +16,16 @@ function JobList() {
     };
     fetchJobs();
   }, []);
+
+  // jobTitle
+  // company
+  // logo
+  // region
+  // salary
+  // category
+  // tags
+  // isFeatured
+
   return (
     <div className="">
       {jobs.map((job) => (
