@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import Editor from "./Editor";
 
 function NewJobForm() {
+  const [description, setDescription] = useState("");
+
+  const getContent = (data) => {
+    setDescription(data);
+  };
+
   return (
     <>
       <div>
@@ -201,7 +208,7 @@ function NewJobForm() {
                       worry! A FYCC team member will manually check it and fix
                       it before publishing.
                     </p>
-                    <textarea name="text" id="" cols="30" rows="10"></textarea>
+                    <Editor getContent={getContent} />
                   </div>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">

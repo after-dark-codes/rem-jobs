@@ -1990,6 +1990,16 @@ styled-jsx@5.0.1:
   resolved "https://registry.yarnpkg.com/styled-jsx/-/styled-jsx-5.0.1.tgz#78fecbbad2bf95ce6cd981a08918ce4696f5fc80"
   integrity sha512-+PIZ/6Uk40mphiQJJI1202b+/dYeTVd9ZnMPR80pgiWbjIwvN2zIp4r9et0BgqBuShh48I0gttPlAXA7WVvBxw==
 
+suneditor-react@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/suneditor-react/-/suneditor-react-3.4.0.tgz#9f4d8c706c6c8760e7081473a004cd3d06894885"
+  integrity sha512-2GkqZtrfrcF+1ujsm9ZwCOM78YghS2Dw/rJm/Pl5xEqVMtfjxCHviWBVlyuEFfPSbq5rfSp3N69nMyIV1wV/Nw==
+
+suneditor@^2.43.4:
+  version "2.43.4"
+  resolved "https://registry.yarnpkg.com/suneditor/-/suneditor-2.43.4.tgz#e00a95de16f901ee6a33fa81c95b34ab2ee68831"
+  integrity sha512-E6AsiILv4u62Ehha/lWYIaa+/0aRyqWQgw7psKiXA+iodO+sepWS7E0GGraqTLYVm9+Sc0caB0gZx41XPmBAIw==
+
 supports-color@^5.3.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
