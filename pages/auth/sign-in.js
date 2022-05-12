@@ -19,34 +19,13 @@ export default function SignIn({ csrfToken }) {
     alert("Credential is not valid");
   };
 
+  const handleSignUpRedirect = (e) => {
+    e.preventDefault();
+    router.push("/auth/sign-up");
+    return;
+  };
+
   return (
-    // <div classNameName="">
-    //   <h1>Sign In</h1>
-    //   <form classNameName="" onSubmit={onSubmit}>
-
-    //     <label htmlFor="email">Email</label>
-    //     <input id="email" name="email" type="email" classNameName="" />
-    //     <label
-    //       style={{
-    //         marginTop: 10,
-    //       }}
-    //       htmlFor="password"
-    //     >
-    //       Password
-    //     </label>
-    //     <input id="password" name="password" type="password" classNameName="" />
-    //     <button
-    //       classNameName=""
-    //       style={{
-    //         marginTop: 15,
-    //       }}
-    //     >
-    //       Sign In
-    //     </button>
-    //   </form>
-    // </div>
-
-    // here
     <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
       <div className="max-w-lg mx-auto text-center">
         <h1 className="text-2xl font-bold sm:text-3xl">Get started today!</h1>
@@ -137,7 +116,7 @@ export default function SignIn({ csrfToken }) {
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-500">
             No account?
-            <a className="underline" href="">
+            <a className="underline" href="" onClick={handleSignUpRedirect}>
               Sign up
             </a>
           </p>
