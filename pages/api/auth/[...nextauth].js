@@ -23,7 +23,7 @@ export default NextAuth({
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
-      name: "Sign in with Email",
+      name: "Email",
       credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
@@ -68,4 +68,7 @@ export default NextAuth({
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/auth/sign-in",
+  },
 });

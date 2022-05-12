@@ -42,12 +42,13 @@ function Header() {
                 >
                   Post Job
                 </a>
-                <img
+                <a
+                  className="px-5 py-2 text-sm font-medium text-gray-500 rounded-lg"
+                  href=""
                   onClick={signOut}
-                  src={session?.user?.image}
-                  alt="image"
-                  className="cursor-pointer"
-                />
+                >
+                  Sign out
+                </a>
               </>
             ) : (
               <a
