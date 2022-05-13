@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Editor from "../../components/Editor";
-
+import axios from "axios";
 import { useRouter } from "next/router";
 import {
   EyeIcon,
@@ -19,13 +19,14 @@ function SignUp() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      email: e.target.email.value,
-      password: e.target.password.value,
-      companyName: e.target.companyName.value,
-      companyTagLine: e.target.companyTagLine.value,
-      companyDescription: description,
+    const newCompany = await axios.post(`http://localhost:1337/api/companies`, {
+      data: {
+        companyName: e.target.companyName.value,
+        companyTagLine: e.target.companyTagLine.value,
+        companyDescription: description,
+      },
     });
+    console.log(newCompany);
 
     router.replace("/");
   };
