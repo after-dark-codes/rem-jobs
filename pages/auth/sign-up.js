@@ -7,6 +7,7 @@ import {
   AtSymbolIcon,
   TagIcon,
   LightningBoltIcon,
+  CurrencyDollarIcon,
 } from "@heroicons/react/outline";
 
 function SignUp() {
@@ -144,6 +145,29 @@ function SignUp() {
           <p className="text-sm text-gray-400 italic">
             Optional: This will be used in your company profile as full company
             description
+          </p>
+        </div>
+
+        <div>
+          <label htmlFor="billingEmail" className="sr-only">
+            Billing Email
+          </label>
+          <div className="relative">
+            <input
+              id="billingEmail"
+              name="billingEmail"
+              type="email"
+              className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+              placeholder="Enter billing email"
+            />
+
+            <span className="absolute inset-y-0 inline-flex items-center right-4">
+              <CurrencyDollarIcon className="w-5 h-5 text-gray-400" />
+            </span>
+          </div>
+          <p className="text-sm text-gray-400 italic">
+            This email will NOT be publicly displayed. We will use it to send
+            you receipt, job edit link and invoice.
           </p>
         </div>
 
