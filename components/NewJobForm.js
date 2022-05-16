@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Editor from "./Editor";
+import { jobCategories, remoteLocations } from "../utils/constants";
+import RemoteLocation from "./RemoteLocation";
 
 function NewJobForm() {
   const [description, setDescription] = useState("");
@@ -20,18 +22,8 @@ function NewJobForm() {
     <>
       <div>
         <div className="md:grid md:grid-cols-1 md:gap-6">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
-                Profile
-              </h3>
-              <p className="mt-1 text-sm text-gray-600">
-                This information will be displayed publicly so be careful what
-                you share.
-              </p>
-            </div>
-          </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
+            <h2>Tell us about your job</h2>
             <form action="#" method="POST">
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -89,13 +81,9 @@ function NewJobForm() {
                       name="category"
                       className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     >
-                      <option>Software Development</option>
-                      <option>QA</option>
-                      <option>DevOps</option>
-                      <option>Design</option>
-                      <option>Sales</option>
-                      <option>Marketing</option>
-                      <option>Other</option>
+                      {jobCategories.map((category) => (
+                        <option key={category}>{category}</option>
+                      ))}
                     </select>
                   </div>
 
@@ -129,7 +117,7 @@ function NewJobForm() {
                         Other unfolds more granular options
                       </p>
                     </div>
-                    <div className="mt-4 space-y-4">
+                    <div className="grid grid-cols-3 my-3">
                       <div className="flex items-center">
                         <input
                           id="remote-worldwide"
@@ -175,86 +163,26 @@ function NewJobForm() {
                           Other
                         </label>
                       </div>
-
-                      {!!otherRemoteReqs && (
-                        <>
-                          <div className="shadow overflow-hidden sm:rounded-md">
-                            <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-                              <fieldset>
-                                <div className="mt-4 space-y-4">
-                                  <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                      <input
-                                        id="comments"
-                                        name="comments"
-                                        type="checkbox"
-                                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                      />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                      <label
-                                        htmlFor="comments"
-                                        className="font-medium text-gray-700"
-                                      >
-                                        Comments
-                                      </label>
-                                      <p className="text-gray-500">
-                                        Get notified when someones posts a
-                                        comment on a posting.
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                      <input
-                                        id="candidates"
-                                        name="candidates"
-                                        type="checkbox"
-                                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                      />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                      <label
-                                        htmlFor="candidates"
-                                        className="font-medium text-gray-700"
-                                      >
-                                        Candidates
-                                      </label>
-                                      <p className="text-gray-500">
-                                        Get notified when a candidate applies
-                                        for a job.
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                      <input
-                                        id="offers"
-                                        name="offers"
-                                        type="checkbox"
-                                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                                      />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                      <label
-                                        htmlFor="offers"
-                                        className="font-medium text-gray-700"
-                                      >
-                                        Offers
-                                      </label>
-                                      <p className="text-gray-500">
-                                        Get notified when a candidate accepts or
-                                        rejects an offer.
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </fieldset>
-                            </div>
-                          </div>
-                        </>
-                      )}
                     </div>
+                    {!!otherRemoteReqs && (
+                      <div>
+                        <div className="shadow overflow-hidden sm:rounded-md">
+                          <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                            <fieldset>
+                              <div className="grid sm:grid-cols-1 md:grid-cols-3">
+                                {remoteLocations.map(([name, label]) => (
+                                  <RemoteLocation
+                                    key={name}
+                                    name={name}
+                                    label={label}
+                                  />
+                                ))}
+                              </div>
+                            </fieldset>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </fieldset>
 
                   <div>
