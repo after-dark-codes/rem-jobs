@@ -27,7 +27,6 @@ function SignUp() {
         companyDescription: description,
       },
     });
-    console.log(newCompany);
 
     router.replace("/");
   };

@@ -22,3 +22,12 @@ export const jobCategories = [
   "Marketing",
   "Other",
 ];
+
+export const employmentType = [
+  "Full-Time",
+  "Part-Time",
+  "Contract",
+  "Freelance",
+  "Internship",
+  "Other",
+];

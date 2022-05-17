@@ -1,36 +1,80 @@
 import React, { useState } from "react";
 import Editor from "./Editor";
-import { jobCategories, remoteLocations } from "../utils/constants";
+import {
+  employmentType,
+  jobCategories,
+  remoteLocations,
+} from "../utils/constants";
 import RemoteLocation from "./RemoteLocation";
 
 function NewJobForm() {
   const [description, setDescription] = useState("");
   const [otherRemoteReqs, setOtherRemoteReqs] = useState(false);
+  const [jobCategory, setJobCategory] = useState("Software Development");
+  const [empType, setEmpType] = useState("Full-Time");
+  const [remoteReqs, setRemoteReqs] = useState([]);
 
   const getContent = (data) => {
     setDescription(data);
   };
 
   const onRemoteReqChange = (e) => {
+    setRemoteReqs([]);
     if (e.target.id === "remote-other") {
       setOtherRemoteReqs(true);
+    } else if (e.target.id === "remote-worldwide") {
+      setRemoteReqs(["Worldwide"]);
+      setOtherRemoteReqs(false);
     } else {
+      setRemoteReqs(["USA"]);
       setOtherRemoteReqs(false);
     }
   };
+
+  const wasChecked = (label) => {
+    setRemoteReqs((reqs) => [...reqs, label]);
+  };
+
+  const categoryChangeHandler = (e) => setJobCategory(e.target.value);
+  const empTypeChangeHandler = (e) => setEmpType(e.target.value);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    // const result = await signIn("credentials", {
+    //   redirect: false,
+    //   email: e.target.email.value,
+    //   password: e.target.password.value,
+    // });
+    // if (result.ok) {
+    //   router.replace("/");
+    //   return;
+    // }
+    // alert("Credential is not valid");
+
+    console.log("jobform", {
+      companyUrl: e.target.companyUrl.value,
+      jobTitle: e.target.jobTitle.value,
+      category: jobCategory,
+      employmentType: empType,
+      remoteReqs: remoteReqs.join(","),
+      salary: e.target.salary.value,
+      jobDescription: description,
+    });
+  };
+
   return (
     <>
       <div>
         <div className="md:grid md:grid-cols-1 md:gap-6">
           <div className="mt-5 md:mt-0 md:col-span-2">
             <h2>Tell us about your job</h2>
-            <form action="#" method="POST">
+            <form action="#" onSubmit={onSubmit}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-3 sm:col-span-2">
                       <label
-                        htmlFor="company-website"
+                        htmlFor="companyUrl"
                         className="block text-sm font-medium text-gray-700"
                       >
                         How to apply
@@ -45,8 +89,8 @@ function NewJobForm() {
                         </span>
                         <input
                           type="text"
-                          name="company-website"
-                          id="company-website"
+                          name="companyUrl"
+                          id="companyUrl"
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="www.example.com"
                         />
@@ -71,7 +115,7 @@ function NewJobForm() {
 
                   <div className="col-span-6 sm:col-span-3">
                     <label
-                      htmlFor="country"
+                      htmlFor="category"
                       className="block text-sm font-medium text-gray-700"
                     >
                       Category
@@ -79,32 +123,37 @@ function NewJobForm() {
                     <select
                       id="category"
                       name="category"
+                      value={jobCategory}
+                      onChange={categoryChangeHandler}
                       className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     >
                       {jobCategories.map((category) => (
-                        <option key={category}>{category}</option>
+                        <option key={category} value={category}>
+                          {category}
+                        </option>
                       ))}
                     </select>
                   </div>
 
                   <div className="col-span-6 sm:col-span-3">
                     <label
-                      htmlFor="employment-type"
+                      htmlFor="employmentType"
                       className="block text-sm font-medium text-gray-700"
                     >
                       Employment Type
                     </label>
                     <select
-                      id="employment-type"
-                      name="employment-type"
+                      id="employmentType"
+                      name="employmentType"
+                      value={empType}
+                      onChange={empTypeChangeHandler}
                       className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     >
-                      <option>Full-Time</option>
-                      <option>Part-Time</option>
-                      <option>Contract</option>
-                      <option>Freelance</option>
-                      <option>Internship</option>
-                      <option>Other</option>
+                      {employmentType.map((type) => (
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -175,6 +224,7 @@ function NewJobForm() {
                                     key={name}
                                     name={name}
                                     label={label}
+                                    wasChecked={wasChecked}
                                   />
                                 ))}
                               </div>

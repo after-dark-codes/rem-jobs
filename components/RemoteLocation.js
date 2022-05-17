@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
-function RemoteLocation({ name, label }) {
+function RemoteLocation({ name, label, wasChecked }) {
+  const [checked, setChecked] = useState(false);
+
+  const changeHandler = () => {
+    wasChecked(label);
+    setChecked(!checked);
+  };
+
   return (
     <div className="flex items-start">
       <div className="flex items-center h-5">
@@ -8,6 +15,8 @@ function RemoteLocation({ name, label }) {
           id={name}
           name={name}
           type="checkbox"
+          checked={checked}
+          onChange={changeHandler}
           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
         />
       </div>
