@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Editor from "./Editor";
 import {
   employmentType,
@@ -6,8 +7,10 @@ import {
   remoteLocations,
 } from "../utils/constants";
 import RemoteLocation from "./RemoteLocation";
+import { useRouter } from "next/router";
 
 function NewJobForm() {
+  const router = useRouter();
   const [description, setDescription] = useState("");
   const [otherRemoteReqs, setOtherRemoteReqs] = useState(false);
   const [jobCategory, setJobCategory] = useState("Software Development");
@@ -40,26 +43,20 @@ function NewJobForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    // const result = await signIn("credentials", {
-    //   redirect: false,
-    //   email: e.target.email.value,
-    //   password: e.target.password.value,
-    // });
-    // if (result.ok) {
-    //   router.replace("/");
-    //   return;
-    // }
-    // alert("Credential is not valid");
-
-    console.log("jobform", {
-      companyUrl: e.target.companyUrl.value,
-      jobTitle: e.target.jobTitle.value,
-      category: jobCategory,
-      employmentType: empType,
-      remoteReqs: remoteReqs.join(","),
-      salary: e.target.salary.value,
-      jobDescription: description,
+    // make feature protected
+    const newJob = await axios.post(`http://localhost:1337/api/jobs`, {
+      data: {
+        companyUrl: e.target.companyUrl.value,
+        jobTitle: e.target.jobTitle.value,
+        category: jobCategory,
+        employmentType: empType,
+        remoteReqs: remoteReqs.join(","),
+        salary: e.target.salary.value,
+        jobDescription: description,
+      },
     });
+    console.log(newJob);
+    router.replace("/preview-job");
   };
 
   return (
