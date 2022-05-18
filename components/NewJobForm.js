@@ -8,6 +8,8 @@ import {
 } from "../utils/constants";
 import RemoteLocation from "./RemoteLocation";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { newJobState } from "../atoms/jobsAtom";
 
 function NewJobForm() {
   const router = useRouter();
@@ -16,6 +18,8 @@ function NewJobForm() {
   const [jobCategory, setJobCategory] = useState("Software Development");
   const [empType, setEmpType] = useState("Full-Time");
   const [remoteReqs, setRemoteReqs] = useState([]);
+
+  const [newJob, setNewJob] = useRecoilState(newJobState);
 
   const getContent = (data) => {
     setDescription(data);
@@ -44,16 +48,25 @@ function NewJobForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
     // make feature protected
-    const newJob = await axios.post(`http://localhost:1337/api/jobs`, {
-      data: {
-        companyUrl: e.target.companyUrl.value,
-        jobTitle: e.target.jobTitle.value,
-        category: jobCategory,
-        employmentType: empType,
-        remoteReqs: remoteReqs.join(","),
-        salary: e.target.salary.value,
-        jobDescription: description,
-      },
+    // const newJob = await axios.post(`http://localhost:1337/api/jobs`, {
+    //   data: {
+    //     companyUrl: e.target.companyUrl.value,
+    //     jobTitle: e.target.jobTitle.value,
+    //     category: jobCategory,
+    //     employmentType: empType,
+    //     remoteReqs: remoteReqs.join(","),
+    //     salary: e.target.salary.value,
+    //     jobDescription: description,
+    //   },
+    // });
+    setNewJob({
+      companyUrl: e.target.companyUrl.value,
+      jobTitle: e.target.jobTitle.value,
+      category: jobCategory,
+      employmentType: empType,
+      remoteReqs: remoteReqs.join(","),
+      salary: e.target.salary.value,
+      jobDescription: description,
     });
     console.log(newJob);
     router.replace("/preview-job");
