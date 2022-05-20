@@ -1,4 +1,4 @@
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 const defaultOptions = {
   ALLOWED_TAGS: ["b", "i", "em", "strong", "a"],

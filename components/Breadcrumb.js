@@ -9,8 +9,8 @@ function Breadcrumb() {
         className="flex items-center space-x-1 text-sm text-gray-500"
       >
         <li>
-          <Link href="#">
-            <a className="block transition-colors hover:text-gray-700" href="#">
+          <Link href="/post-job">
+            <a className="block transition-colors hover:text-gray-700">
               {" "}
               Create Job Listing{" "}
             </a>
@@ -33,13 +33,12 @@ function Breadcrumb() {
         </li>
 
         <li>
-          <a
-            className="block transition-colors hover:text-gray-700"
-            href="/collections/shirts"
-          >
-            {" "}
-            Preview{" "}
-          </a>
+          <Link href="/preview-job">
+            <a className="block transition-colors hover:text-gray-700">
+              {" "}
+              Preview{" "}
+            </a>
+          </Link>
         </li>
 
         <li>
@@ -58,13 +57,12 @@ function Breadcrumb() {
         </li>
 
         <li>
-          <a
-            className="block transition-colors hover:text-gray-700"
-            href="/products/plain-tee"
-          >
-            {" "}
-            Confirm & Pay{" "}
-          </a>
+          <Link href="/checkout">
+            <a className="block transition-colors hover:text-gray-700">
+              {" "}
+              Confirm & Pay{" "}
+            </a>
+          </Link>
         </li>
       </ol>
     </nav>
